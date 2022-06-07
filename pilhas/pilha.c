@@ -9,7 +9,7 @@ Pilha *pilha_cria(void){
 
 
 void pilha_push(Pilha *p, float v){
-    NoLista *no = malloc(sizeof(NoLista));
+    NoLista *no = (NoLista *)malloc(sizeof(NoLista));
     no->valor = v;
     no->prox = p->topo;
     p->topo = no;
