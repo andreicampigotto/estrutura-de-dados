@@ -47,6 +47,7 @@ int arv_pertence(Arv *a, char c)
     }
     else
     {
+
         return a->info == c || arv_pertence(a->esq, c) || arv_pertence(a->dir, c);
     }
 }
@@ -93,9 +94,7 @@ void arv_imprime_pos(Arv *a)
 // retorna a quantidade de nós folha da árvore
 int arv_folhas(Arv *a)
 {
-    if (a->esq == NULL && a->dir == NULL)
-        return 1;
-    return 0;
+    printf("folhas da árvore 'a': %d\n", arvv_folhas(a));
 }
 
 // retorna a altura da árvore (0 para árvore vazia)
