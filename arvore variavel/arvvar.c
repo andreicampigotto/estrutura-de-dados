@@ -57,13 +57,13 @@ void arvv_libera(ArvVar *a)
         arvv_libera(p);
         p = t;
     }
-    free(a);
+    return free(a);
 }
 
 // retorna a quantidade de nós folha da árvore
 int arvv_folhas(ArvVar *a)
 {
-    printf("folhas da árvore 'a': %d\n", arvv_folhas(a));
+    return printf("\nfolhas da árvore 'a': %d\n", arvv_folhas(a));
 }
 
 // retorna a altura da árvore (0 para árvore vazia)
