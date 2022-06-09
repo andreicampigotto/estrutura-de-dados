@@ -101,5 +101,7 @@ int arvv_igual(ArvVar *a1, ArvVar *a2)
 // retorna uma cópia da árvore a. A nova árvore deve ter novos nós instanciados
 ArvVar *arvv_copia(ArvVar *a)
 {
-    return arvv_cria(a);
+    ArvVar *b = (ArvVar *)(1, sizeof(ArvVar));
+    b = a;
+    return arvv_cria(b);
 }

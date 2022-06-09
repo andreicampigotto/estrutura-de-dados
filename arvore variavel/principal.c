@@ -35,9 +35,9 @@ int main(int argc, char const *argv[])
 
     printf("%d\n", arvv_altura(a));
 
-    ArvVar *b = arvv_copia(a);
+    ArvVar *k = arvv_copia(a);
 
-    arvv_igual(a, b) == 1 ? printf("árvore igual\n") : printf("árvore não igual\n");
+    arvv_igual(a, k) == 1 ? printf("árvore igual\n") : printf("árvore não igual\n");
 
     arvv_libera(a);
 
