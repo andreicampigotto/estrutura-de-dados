@@ -94,7 +94,7 @@ void arv_imprime_pos(Arv *a)
 // retorna a quantidade de nós folha da árvore
 int arv_folhas(Arv *a)
 {
-    printf("folhas da árvore 'a': %d\n", arvv_folhas(a));
+    printf("folhas da árvore 'a': %d\n", arv_folhas(a));
 }
 
 // retorna a altura da árvore (0 para árvore vazia)
