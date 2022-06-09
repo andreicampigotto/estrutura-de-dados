@@ -17,14 +17,14 @@ int main(int argc, char const *argv[])
     arv_imprime_sim(a);
     arv_imprime_pos(a);
 
-    arv_vazia(a) ? printf("árvore vazia") : printf("árvore não vazia");
+    arv_vazia(a) == 0 ? printf("árvore vazia") : printf("árvore não vazia");
 
-    arv_pertence(a, 1) ? printf("pertence a árvore") : printf("não pertence a árvore");
+    arv_pertence(a, 1) == 1 ? printf("pertence a árvore") : printf("não pertence a árvore");
     arv_folhas(a);
 
     printf("%d\n", arv_altura(a));
 
-    arv_igual(a, b) ? printf("árvore igual") : printf("árvore não igual");
+    arv_igual(a, b) == 1 ? printf("árvore igual") : printf("árvore não igual");
 
     arv_libera(a);
 

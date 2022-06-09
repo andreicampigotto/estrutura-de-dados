@@ -13,4 +13,18 @@ int main(int argc, char const *argv[])
     arvv_insere(a, '5');
 
     arvv_imprime(a);
+
+    arvv_pertence(a, '7') == 1 ? printf("pertence a árvore") : printf("não pertence a árvore");
+
+    arvv_folhas(a);
+
+    printf("%d\n", arvv_altura(a));
+
+    ArvVar *b = arvv_copia(a);
+
+    arvv_igual(a, b) == 1 ? printf("árvore igual") : printf("árvore não igual");
+
+    arvv_libera(a);
+
+    return 0;
 }
