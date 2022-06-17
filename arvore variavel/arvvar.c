@@ -6,7 +6,7 @@
 // inicializadas como NULL
 ArvVar *arvv_cria(char c)
 {
-    ArvVar *a = (ArvVar *)(1, sizeof(ArvVar));
+    ArvVar *a = (ArvVar *)calloc(1, sizeof(ArvVar));
     a->info = c;
     a->prim = NULL;
     a->prox = NULL;
@@ -101,7 +101,12 @@ int arvv_igual(ArvVar *a1, ArvVar *a2)
 // retorna uma cópia da árvore a. A nova árvore deve ter novos nós instanciados
 ArvVar *arvv_copia(ArvVar *a)
 {
-    ArvVar *b = (ArvVar *)(1, sizeof(ArvVar));
-    b = a;
-    return arvv_cria(b);
+    ArvVar *b = arvv_cria(a->info);
+    while (a)
+    {
+        arvv_copia(a->prox);
+        arvv_insere();
+    }
+
+    return b;
 }
