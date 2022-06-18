@@ -1,0 +1,182 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <string.h>
+#include <time.h>
+
+typedef struct soldado Lista;
+
+struct soldado {
+	char nome[20];
+	int num;
+	Lista* prox;
+};
+
+// Auxiliares
+Lista* cria_soldado(char* nome, int numero);
+Lista* remove_soldado(Lista* lista, Lista* soldado);
+
+Lista* inicializa();
+int verificaVazio(Lista* lista);
+Lista* insereSoldado(Lista* lista, char* nome, int num);
+void imprimeSoldados(Lista* lista);
+int verificaSoldados(Lista* lista);
+Lista* executaJosephus(Lista* lista, int quantidade);
+
+int main(void) {
+
+	srand(time(0));
+
+	int i;
+	Lista* lista = inicializa();
+
+	char nomes[5][20] = { "AAAAa", "BBBBB", "CCCCC", "DDDDDD", "EEEEEE" };
+
+	for (i = 0; i < 5; i++)
+		lista = insereSoldado(lista, nomes[i], (i+1));
+
+	int quantidade = verificaSoldados(listax);
+	/printf("\nQuantidade de Soldados: %d\n\n", quantidade);
+
+	lista = executaJosephus(lista, quantidade);
+
+	printf("\nSoldado a executar:\n");
+	imprimeSoldados(lista);
+
+	return 0;
+}
+
+Lista* cria_soldado(char* nome, int numero) {
+
+	Lista* soldado = (Lista*)malloc(sizeof(Lista));
+
+	soldado->num = numero;
+	strcpy(soldado->nome, nome);
+	soldado->prox = soldado;
+
+	return soldado;
+}
+
+Lista* remove_soldado(Lista* lista, Lista* soldado) {
+
+	Lista* aux = lista;
+
+	if (soldado == aux && soldado->prox == aux) {
+		lista = inicializa();
+
+	} else if (soldado == aux) {
+		lista = soldado->prox;
+
+		do {
+			aux = aux->prox;
+		} while (aux->prox->prox != lista);
+
+		aux->prox = lista;
+
+	} else {
+		do {
+			if (aux->prox == soldado) {
+				aux->prox = soldado->prox;
+				break;
+			}
+
+			aux = aux->prox;
+
+		} while (aux->prox != lista);
+	}
+
+	free(soldado);
+
+	return lista;
+}
+
+Lista* executaJosephus(Lista* lista, int quantidade) {
+
+	int i, num_soldado, num_iteracoes;
+
+	if (verificaVazio(lista)) {
+		printf("\n vazio.\n");
+		return lista;
+	}
+
+	if (quantidade == 1) {
+		printf("\n[!] Soldado escolhido: %s\n", lista->nome);
+		return lista;
+	}
+
+	num_iteracoes = rand() % 20;
+	num_soldado = rand() % quantidade;
+
+	Lista* aux = lista;
+
+	printf("Quantidade de soldados: %d\n\n", quantidade);
+
+	imprimeSoldados(lista);
+
+	printf("\nSoldado para iniciar %da posição:\n", num_soldado + 1);
+
+	for (i = 0; i < num_soldado; i++)
+		aux = aux->prox;
+
+	printf("Soldado inicial: %s\nnum. de iterações: %d\n", aux->nome, num_iteracoes);
+
+	for (i = 0; i < num_iteracoes; i++)
+		aux = aux->prox;
+
+	printf("Soldado eliminado: %s\n", aux->nome);
+	lista = remove_soldado(lista, aux);
+
+	return executaJosephus(lista, quantidade - 1);
+}
+
+Lista* insereSoldado(Lista* lista, char* nome, int num) {
+
+	Lista* soldado = cria_soldado(nome, num);
+
+	if (!verificaVazio(lista)) {
+		Lista* aux = lista;
+
+		while (aux->prox != lista)
+			aux = aux->prox;
+
+		aux->prox = soldado; 
+		soldado->prox = lista; 
+	}
+
+	return soldado;
+}
+
+void imprimeSoldados(Lista* lista) {
+
+	Lista* aux = lista;
+
+	if ( !verificaVazio(lista) ) {
+		do {
+			printf("[Num. %d] %s [%p]->[%p]\n", aux->num, aux->nome, aux, aux->prox);
+			aux = aux->prox;
+
+		} while (aux != lista);
+	}
+}
+
+Lista* inicializa() {
+	return NULL;
+}
+
+int verificaVazio(Lista* lista) {
+	return !lista;
+}
+
+int verificaSoldados(Lista* lista) {
+	int quantidade = 0;
+	Lista* aux = lista;
+
+	if ( !verificaVazio(lista) ) {
+		quantidade++;
+		while (aux->prox != lista) {
+			quantidade++;
+			aux = aux->prox;
+		}
+	}
+	return quantidade;
+}
