@@ -20,6 +20,24 @@ void arvv_insere(ArvVar *a, ArvVar *sa)
     a->prim = sa;
 }
 
+// insere no fim
+void arvv_insere_fim(ArvVar *a, ArvVar *sa)
+{
+    ArvVar *p = a->prim;
+    if (p == NULL)
+    {
+        arvv_insere(a, sa);
+    }
+    else
+    {
+        while (p->prox != NULL)
+        {
+            p = p->prox;
+        }
+        p->prox = sa;
+    }
+}
+
 // deve imprimir a árvore em pré-ordem (primeiro o nó raiz, e depois cada uma das sub-árvores)
 void arvv_imprime(ArvVar *a)
 {
@@ -104,8 +122,8 @@ ArvVar *arvv_copia(ArvVar *a)
     ArvVar *b = arvv_cria(a->info);
     while (a)
     {
+        arvv_insere_fim(b, arvv_copia(a->prox));
         arvv_copia(a->prox);
-        arvv_insere();
     }
 
     return b;
