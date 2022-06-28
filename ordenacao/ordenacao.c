@@ -5,7 +5,7 @@ int *criaVetorEmbaralhado(int n);
 
 void bubbleSort(int n, int *v);
 void quickSort(int n, int *v);
-void mergeSort(int n, int *v);
+void mergeSort(v, primeiro, ultimo);
 
 int *criaVetorEmbaralhado(int n)
 {
@@ -82,73 +82,46 @@ void quickSort(int n, int *v)
     printf("\n");
 }
 
-void intercala(int v1[], int i1, int f1,
-               int v2[], int i2, int f2,
-               int v3[])
+void Merge(v, primeiro, q, ultimo)
 {
-    int n1, n2, n3, k1, k2;
+    int n1 = q - primeiro + 1;
+    int n2 = ultimo - q;
 
-    n1 = f1 - i1 + 1;
-    n2 = f2 - i2 + 1;
-    n3 = n1 + n2;
+    int : L[0..n1];
+    int : R[0..n1];
 
-    k1 = i1;
-    k2 = i2;
-    for (int i = 0; i < n3; i++)
+    for (int i = 0; i < n1; i++)
     {
-        if (k1 <= f1 && k2 <= f2)
+        L[i] = v[primeiro + i];
+        for (int j = 0; j < n2; j++)
         {
-            if (v1[k1] <= v2[k2])
+            R[j] = v[q + j + 1];
+        }
+        for (p = primeiro; p < ultimo; p++)
+        {
+            if (L[i] <= R[j])
             {
-                v3[i] = v1[k1];
-                k1++;
+                v[p] = L[i];
+                i++;
             }
             else
             {
-                v3[i] = v2[k2];
-                k2++;
+                v[p] = R[j];
+                j++;
             }
-        }
-        else if (k1 <= f1)
-        {
-            v3[i] = v1[k1];
-            k1++;
-        }
-        else
-        {
-            v3[i] = v2[k2];
-            k2++;
         }
     }
 }
 
-void mergeSort(int n, int *v)
+void mergeSort(v, primeiro, ultimo)
 {
-
-    int *aux;
-    int m = (v[0] + v[n]) / 2;
-    if (v[0] < v[n])
+    if (primeiro < ultimo)
     {
-        mergesort(m, v[0]);
-        mergesort(m, v[m]);
-
-        aux = (int *)malloc(sizeof(int) * (v[n] - v[0] + 1));
-
-        intercala(v, v[0], m,
-                  v, m + 1, v[n],
-                  aux);
-        for (int i = 0; i < v[n] - v[0] + 1; i++)
-        {
-            v[v[0] + i] = aux[i];
-        }
-        free(aux);
+        int q = (primeiro + ultimo) / 2;
+        MergeSort(v, primeiro, ultimo);
+        MergeSort(v, primeiro + 1, ultimo);
+        Merge(v, primeiro, q, ultimo);
     }
-
-    for (int i = 0; i < (int)sizeof(v); i++)
-        printf(" %d ", v[i]);
-    printf("\n");
-
-    return 0;
 }
 
 int main(int argc, char const *argv[])
