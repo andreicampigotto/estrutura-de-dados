@@ -19,15 +19,15 @@ int *criaVetorEmbaralhado(int n)
 
     for (int i = 0; i < n; i++)
     {
-        aux[i] = i;
+        arr[i] = i;
     }
 
     for (int i = 0; i < n; i++)
     {
-        j = (rand() % n);
+        int j = (rand() % n);
         int temp = arr[i];
         arr[i] = arr[j];
-        arr[j] = temp
+        arr[j] = temp;
     }
     return arr;
 }
@@ -36,7 +36,7 @@ void bubbleSort(int n, int *v)
 {
     int j, troca = 0;
 
-    for (j = 0; j < n; j++)
+    for (j = 0; j < n - 1; j++)
     {
         if (v[j] > v[j + 1])
         {
@@ -105,8 +105,8 @@ void Merge(int v[], int primeiro, int q, int ultimo)
         R[j] = v[q + j + 1];
     }
 
-    L[n1] = INT_MAX;
-    R[n2] = INT_MAX;
+    L[n1] = INT8_MAX;
+    R[n2] = INT8_MAX;
 
     int i = 0;
     int j = 0;
@@ -126,7 +126,7 @@ void Merge(int v[], int primeiro, int q, int ultimo)
     }
 }
 
-void mergeSort(v, primeiro, ultimo)
+void mergeSort(int v[], int primeiro, int ultimo)
 {
     if (primeiro < ultimo)
     {
@@ -140,14 +140,33 @@ void mergeSort(v, primeiro, ultimo)
 int main(int argc, char const *argv[])
 {
     int n = 10;
-    int *v = malloc(n * sizeof(int));
+    // int *v = malloc(n * sizeof(int));
+    printf("Teste 2\n");
 
-    v = criaVetorEmbaralhado(n);
+    int *v = criaVetorEmbaralhado(n);
+    for (int i = 0; i < n; i++)
+    {
+        printf("%d ", v[i]);
+    }
+    printf("\n");
 
     bubbleSort(n, v);
-    quickSort(v, 0, n);
-    mergeSort(v, 0, n);
-
+    for (int i = 0; i < n; i++)
+    {
+        printf("%d ", v[i]);
+    }
+    printf("\n");
     free(v);
+    v = criaVetorEmbaralhado(n);
+    quickSort(v, 0, n);
+
+    for (int i = 0; i < n; i++)
+    {
+        printf("%d ", v[i]);
+    }
+
+    // mergeSort(v, 0, n);
+
+    // free(v);
     return 0;
 }
