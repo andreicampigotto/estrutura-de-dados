@@ -94,28 +94,34 @@ void Merge(int v[], int primeiro, int q, int ultimo)
 
     int *L = malloc(n1 * sizeof(int));
     int *R = malloc(n2 * sizeof(int));
-    memcpy(L, v, n1 * sizeof(int));
-    memcpy(R, v, n2 * sizeof(int));
 
     for (int i = 0; i < n1; i++)
     {
         L[i] = v[primeiro + i];
-        for (int j = 0; j < n2; j++)
+    }
+
+    for (int j = 0; j < n2; j++)
+    {
+        R[j] = v[q + j + 1];
+    }
+
+    L = INT_MAX;
+    R = INT_MAX;
+
+    int i = 0;
+    int j = 0;
+
+    for (int p = primeiro; p < ultimo; p++)
+    {
+        if (L[i] <= R[j])
         {
-            R[j] = v[q + j + 1];
+            v[p] = L[i];
+            i++;
         }
-        for (int p = primeiro; p < ultimo; p++)
+        else
         {
-            if (L[i] <= R[j])
-            {
-                v[p] = L[i];
-                i++;
-            }
-            else
-            {
-                v[p] = R[j];
-                j++;
-            }
+            v[p] = R[j];
+            j++;
         }
     }
 }
