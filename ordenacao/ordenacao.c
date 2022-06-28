@@ -9,19 +9,25 @@ void mergeSort(int n, int *v);
 
 int *criaVetorEmbaralhado(int n)
 {
-    n = 10 for (int i = 0; i < n; i++) return v[i] = rand() % (n * 10);
+    n = 10;
+    for (int i = 0; i < n; i++)
+    {
+        return rand() % (n * 10);
+    }
 }
 
 void bubbleSort(int n, int *v)
 {
     int aux;
-    for (int i = 0; i < n - 1; i++)
+
+    for (int i = 1; i < n; i++)
     {
         printf("\n[%d] ", i);
 
-        for (int j = 0; j < n - i - 1; j++)
+        for (int j = 0; j < n - 1; j++)
         {
             printf("%d, ", j);
+
             if (v[j] > v[j + 1])
             {
                 aux = v[j];
@@ -44,14 +50,14 @@ void quickSort(int n, int *v)
 {
 
     int pivo = v[0];
-    int i, f;
 
-    if ((int)sizeof(v) > v[0])
+    if (v[n] > v[0])
     {
-        i = v[0] + 1;
-        f = (int)sizeof(v);
+        int i, f;
+        i = v[0];
+        f = v[n];
 
-        while (i <= f)
+        while (v[1] <= v[n])
         {
             if (v[i] <= pivo)
                 i++;
@@ -67,8 +73,6 @@ void quickSort(int n, int *v)
 
         i--;
         troca(v, v[0], i);
-        quicksort(v, v[0], i - 1);
-        quicksort(v, i + 1, (int)sizeof(v));
     }
 
     for (int i = 0; i < (int)sizeof(v); i++)
@@ -83,14 +87,14 @@ void intercala(int v1[], int i1, int f1,
                int v3[])
 {
     int n1, n2, n3, k1, k2;
-    int i;
+
     n1 = f1 - i1 + 1;
     n2 = f2 - i2 + 1;
     n3 = n1 + n2;
 
     k1 = i1;
     k2 = i2;
-    for (i = 0; i < n3; i++)
+    for (int i = 0; i < n3; i++)
     {
         if (k1 <= f1 && k2 <= f2)
         {
