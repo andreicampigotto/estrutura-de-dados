@@ -75,7 +75,7 @@ void quickSort(int n, int *v)
         troca(v, v[0], i);
     }
 
-    for (int i = 0; i < (int)sizeof(v); i++)
+    for (int i = 0; i < v[n]; i++)
     {
         printf(" %d ", v[i]);
     }
@@ -126,18 +126,18 @@ void mergeSort(int n, int *v)
 {
 
     int *aux;
-    int m = (v[0] + (int)sizeof(v)) / 2;
-    if (v[0] < (int)sizeof(v))
+    int m = (v[0] + v[n]) / 2;
+    if (v[0] < v[n])
     {
-        mergesort(v, v[0], m);
-        mergesort(v, m + 1, (int)sizeof(v));
+        mergesort(m, v[0]);
+        mergesort(m, v[m]);
 
-        aux = (int *)malloc(sizeof(int) * ((int)sizeof(v) - v[0] + 1));
+        aux = (int *)malloc(sizeof(int) * (v[n] - v[0] + 1));
 
         intercala(v, v[0], m,
-                  v, m + 1, (int)sizeof(v),
+                  v, m + 1, v[n],
                   aux);
-        for (int i = 0; i < (int)sizeof(v) - v[0] + 1; i++)
+        for (int i = 0; i < v[n] - v[0] + 1; i++)
         {
             v[v[0] + i] = aux[i];
         }
