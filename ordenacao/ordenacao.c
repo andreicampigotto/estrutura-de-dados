@@ -105,8 +105,8 @@ void Merge(int v[], int primeiro, int q, int ultimo)
         R[j] = v[q + j + 1];
     }
 
-    L = INT_MAX;
-    R = INT_MAX;
+    L[n1] = INT_MAX;
+    R[n2] = INT_MAX;
 
     int i = 0;
     int j = 0;
