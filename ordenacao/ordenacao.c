@@ -1,11 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 int *criaVetorEmbaralhado(int n);
 
 void bubbleSort(int n, int *v);
 void quickSort(int v[], int a, int b);
 void mergeSort(int v[], int primeiro, int ultimo);
+int particiona(int *v, int a, int b);
+void troca(int v[], int a, int b);
 
 int *criaVetorEmbaralhado(int n)
 {
@@ -14,14 +17,17 @@ int *criaVetorEmbaralhado(int n)
 
     srand(time(NULL));
 
-    for (int i, i < n, i++)
+    for (int i; i < n; i++)
     {
         aux[i] = i;
     }
 
-    for (int i, i < n, i++)
+    for (int i; i < n; i++)
     {
-        arr[i] = rand(aux[i] % n);
+        j = (rand() % n);
+        int temp = aux[i];
+        aux[i] = aux[j];
+        aux[j] = temp
     }
 }
 
@@ -29,7 +35,7 @@ void bubbleSort(int n, int *v)
 {
     int j, troca = 0;
 
-    for (j = 0; j < n, j++)
+    for (j = 0; j < n; j++)
     {
         if (v[j] > v[j + 1])
         {
@@ -39,7 +45,7 @@ void bubbleSort(int n, int *v)
             troca = 1;
         }
     }
-    if (troca = 1)
+    if (troca == 1)
     {
         bubbleSort(n - 1, v);
     }
@@ -68,7 +74,7 @@ int particiona(int v[], int a, int b)
         {
             b--;
         }
-        troca(v, a, b)
+        troca(v, a, b);
     }
     return a;
 }
@@ -77,7 +83,7 @@ void troca(int v[], int a, int b)
 {
     int aux = v[a];
     v[a] = v[b];
-    v[b] = temp
+    v[b] = aux;
 }
 
 void Merge(v, primeiro, q, ultimo)
@@ -118,8 +124,8 @@ void mergeSort(v, primeiro, ultimo)
     if (primeiro < ultimo)
     {
         int q = (primeiro + ultimo) / 2;
-        MergeSort(v, primeiro, ultimo);
-        MergeSort(v, primeiro + 1, ultimo);
+        mergeSort(v, primeiro, ultimo);
+        mergeSort(v, primeiro + 1, ultimo);
         Merge(v, primeiro, q, ultimo);
     }
 }
