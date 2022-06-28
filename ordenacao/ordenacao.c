@@ -1,16 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void gerarVetor(int n, int *v);
+int *criaVetorEmbaralhado(int n);
 
 void bubbleSort(int n, int *v);
 void quickSort(int n, int *v);
 void mergeSort(int n, int *v);
 
-void gerarVetor(int n, int *v)
+int *criaVetorEmbaralhado(int n)
 {
-    n = 10 for (int i = 0; i < n; i++)
-        v[i] = rand() % (n * 10);
+    n = 10 for (int i = 0; i < n; i++) return v[i] = rand() % (n * 10);
 }
 
 void bubbleSort(int n, int *v)
@@ -154,9 +153,11 @@ int main(int argc, char const *argv[])
     int *v;
     v = (int *)malloc(n * sizeof(int));
 
-    bubbleSort(n, gerarVetor(n, v));
-    quickSort(n, gerarVetor(n, v));
-    mergeSort(n, gerarVetor(n, v));
+    v = criaVetorEmbaralhado(n);
+
+    bubbleSort(n, v);
+    quickSort(n, v);
+    mergeSort(n, v);
 
     free(v);
     return 0;
