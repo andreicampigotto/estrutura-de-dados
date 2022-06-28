@@ -9,26 +9,27 @@ void quickSort(int v[], int a, int b);
 void mergeSort(int v[], int primeiro, int ultimo);
 int particiona(int *v, int a, int b);
 void troca(int v[], int a, int b);
+void Merge(int v[], int primeiro, int q, int ultimo);
 
 int *criaVetorEmbaralhado(int n)
 {
     int *arr = malloc(n * sizeof(int));
-    int *aux = malloc(n * sizeof(int));
 
     srand(time(NULL));
 
-    for (int i; i < n; i++)
+    for (int i = 0; i < n; i++)
     {
         aux[i] = i;
     }
 
-    for (int i; i < n; i++)
+    for (int i = 0; i < n; i++)
     {
         j = (rand() % n);
-        int temp = aux[i];
-        aux[i] = aux[j];
-        aux[j] = temp
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp
     }
+    return arr;
 }
 
 void bubbleSort(int n, int *v)
@@ -86,7 +87,7 @@ void troca(int v[], int a, int b)
     v[b] = aux;
 }
 
-void Merge(v, primeiro, q, ultimo)
+void Merge(int v[], int primeiro, int q, int ultimo)
 {
     int n1 = q - primeiro + 1;
     int n2 = ultimo - q;
@@ -103,7 +104,7 @@ void Merge(v, primeiro, q, ultimo)
         {
             R[j] = v[q + j + 1];
         }
-        for (p = primeiro; p < ultimo; p++)
+        for (int p = primeiro; p < ultimo; p++)
         {
             if (L[i] <= R[j])
             {
