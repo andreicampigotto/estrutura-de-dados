@@ -31,23 +31,17 @@ Arv *abb_busca(Arv *r, int v)
     {
         return NULL;
     }
+    elseif(v < r->info)
+    {
+        abb_busca(r->esq, v);
+    }
+    else if (v > r->info)
+    {
+        abb_busca(r->esq, v);
+    }
     else
     {
-        if (v < r->info)
-        {
-            abb_busca(r->esq, v);
-        }
-        else
-        {
-            if (v > r->info)
-            {
-                abb_busca(r->esq, v);
-            }
-            else
-            {
-                return r;
-            }
-        }
+        return r;
     }
 }
 
@@ -62,17 +56,15 @@ Arv *abb_insere(Arv *a, int v)
         a->info = v;
         a->esq = a->dir = NULL;
     }
+    else if (v < a->info)
+    {
+        a->esq = abb_insere(a->esq, v);
+    }
     else
     {
-        if (v < a->info)
-        {
-            a->esq = abb_insere(a->esq, v);
-        }
-        else
-        {
-            a->dir = abb_insere(a->dir, v);
-        }
+        a->dir = abb_insere(a->dir, v);
     }
+
     return a;
 }
 
@@ -89,42 +81,33 @@ Arv *abb_retira(Arv *r, int v)
         {
             r->esq = abb_retira(r->esq, v);
         }
+        else if (v > r->info)
+        {
+            r->dir = abb_retira(r->dir, v);
+        }
+        else if (r->esq == NULL && no.dir == NULL)
+        {
+            r = NULL;
+        }
         else
         {
-            if (v > r->info)
+            if (r->esq == NULL)
             {
-                r->dir = abb_retira(r->dir, v);
+                r = r->dir;
+            }
+            else if (r->dir == NULL)
+            {
+                r = r->esq;
             }
             else
             {
-                if (r->esq == NULL && no.dir == NULL)
+                // cria p
+                while (p.dir != NULL)
                 {
-                    r = NULL;
-                }
-                else
-                {
-                    if (r->esq == NULL)
-                    {
-                        r = r->dir;
-                    }
-                    else
-                    {
-                        if (r->dir == NULL)
-                        {
-                            r = r->esq;
-                        }
-                        else
-                        {
-                            // cria p
-                            while (p.dir != NULL)
-                            {
-                                p = p.dir;
-                                r->info = p->info;
-                                p->info = v;
-                                r->esq = retiraAux(r->esq, valor);
-                            }
-                        }
-                    }
+                    p = p.dir;
+                    r->info = p->info;
+                    p->info = v;
+                    r->esq = retiraAux(r->esq, valor);
                 }
             }
         }
