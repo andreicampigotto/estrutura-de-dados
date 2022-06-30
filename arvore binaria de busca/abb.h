@@ -1,3 +1,6 @@
+#ifndef _abb_h
+#define _abb_h
+
 struct arv
 {
     int info;
@@ -12,3 +15,5 @@ Arv *abb_busca(Arv *r, int v);
 Arv *abb_insere(Arv *a, int v);
 Arv *abb_retira(Arv *r, int v);
 void abb_imprimeDecrescente(Arv *a);
+
+#endif

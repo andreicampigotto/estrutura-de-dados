@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <abb.h>
+#include "abb.h"
 
 // cria uma arvore binaria vazia (i.e., simplesmente retorna NULL);
 Arv *abb_cria(void)
@@ -31,7 +31,7 @@ Arv *abb_busca(Arv *r, int v)
     {
         return NULL;
     }
-    elseif(v < r->info)
+    else if (v < r->info)
     {
         abb_busca(r->esq, v);
     }
@@ -85,7 +85,7 @@ Arv *abb_retira(Arv *r, int v)
         {
             r->dir = abb_retira(r->dir, v);
         }
-        else if (r->esq == NULL && no.dir == NULL)
+        else if (r->esq == NULL && r.dir == NULL)
         {
             r = NULL;
         }
@@ -107,7 +107,7 @@ Arv *abb_retira(Arv *r, int v)
                     p = p.dir;
                     r->info = p->info;
                     p->info = v;
-                    r->esq = retiraAux(r->esq, valor);
+                    r->esq = retiraAux(r->esq, v);
                 }
             }
         }
