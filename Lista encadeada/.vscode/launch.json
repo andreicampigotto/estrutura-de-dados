@@ -1,0 +1,16 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "cppdbg",
+      "request": "launch",
+      "args": [],
+      "stopAtEntry": true,
+      "externalConsole": false,
+      "cwd": "/Users/andreicampigotto/Desktop/Estrutura de dados I/Lista encadeada",
+      "program": "/Users/andreicampigotto/Desktop/Estrutura de dados I/Lista encadeada/build/Debug/outDebug",
+      "MIMode": "gdb"
+    }
+  ]
+}

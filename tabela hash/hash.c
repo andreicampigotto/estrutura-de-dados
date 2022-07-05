@@ -14,13 +14,14 @@ static int hash(int k)
 Aluno *hsh_get(Hash tab, int mat)
 {
     int h = hash(mat);
+    int h2 = hash2(mat);
     while (tab[h] != NULL)
     {
         if (tab[h]->matricula == mat)
         {
             return tab[h];
         }
-        h = (h + 1) % sizeof tab;
+        h = (h + h2) % sizeof tab;
     }
     return NULL;
 }
@@ -29,6 +30,22 @@ Aluno *hsh_get(Hash tab, int mat)
 // para a funcao. A funcao deve retornar o ponteiro para o novo aluno inserido, ou para o aluno com dados modificados;
 Aluno *hsh_set(Hash tab, int mat, char *n, char *e, char t)
 {
+    int h = hash(mat);
+    while (tab[h] != NULL)
+    {
+        if (tab[h]->matricula == mat)
+        {
+            break;
+        }
+        h = (h + 1) % sizeof tab;
+    }
+    if (tab[h] == NULL)
+    {
+        tab[h] = aluno;
+        tab[h]->matricula = mat;
+    }
+    tab[h]->nome = n;
+    tab[h].media = media;
 }
 
 // remove da tabela tab o registro do aluno com matrıcula mat. Caso este aluno nao seja encontrado, a fun ̧cao nao faz qualquer alteracao na tabela;
@@ -47,7 +64,19 @@ void hsh_remove(Hash tab, int mat)
     }
 }
 
-// imprime o conteu ́do de toda a tabelahash.
+// imprime o conteudo de toda a tabelahash.
 void hsh_imprime(Hash tab)
 {
+    int h;
+    for (int i = 0; i < sizeof tab; i++)
+    {
+        h = i;
+        printf("%d:\n", h);
+
+        if (tab[h] != NULL)
+        {
+            Aluno *p = tab[h];
+            printf("\tmat: %d\tcr: %f:\n", p->matricula, p->nome);
+        }
+    }
 }
